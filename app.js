@@ -10,9 +10,6 @@ const connectToDb = require('./dbcloudConfig/db');
 connectToDb();
 
 
-
-const userRoutes = require('./routes/user.routes');
-
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 const fileUpload = require('express-fileupload');
@@ -37,10 +34,11 @@ app.get('/', (req,res)=>{
   res.send("Welcome to Express Web App ")
 });
 
+const userRoutes = require('./routes/user.routes');
 const bookRoutes = require('./routes/book.routes');
 const transactionRoutes = require('./routes/transaction.routes');
 
-app.use('/users', userRoutes);
+app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/book', bookRoutes );
 app.use("/api/v1/transaction", transactionRoutes);
 
